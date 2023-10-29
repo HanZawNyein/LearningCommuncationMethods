@@ -15,10 +15,4 @@ todo_pb2_grpc.add_TodoServiceServicer_to_server(TodoServicer(), server)
 server.add_insecure_port('[::]:50051')
 server.start()
 logging.info("Server started on port 50051")
-
-# Wait for the server to stop
-try:
-    while True:
-        time.sleep(86400)
-except KeyboardInterrupt:
-    server.stop(0)
+server.wait_for_termination()
